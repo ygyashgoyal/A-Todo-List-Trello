@@ -1,7 +1,7 @@
 // src/api/tasks.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000'; // FastAPI server
+const API_URL = import.meta.env.VITE_API_URL; // FastAPI server
 
 export const getTasks = async () => {
   const res = await axios.get(`${API_URL}/tasks`);
