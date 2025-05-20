@@ -7,7 +7,7 @@ export default function TaskBoard({ user }) {
     const [tasks, setTasks] = useState([]);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const API_URL = "http://localhost:8000"; // or your backend's URL
+    const API_URL = "https://trello-a-todo-list-backend.onrender.com/"; // or your backend's URL
 
     const statuses = ["todo", "inprogress", "done"];
 
@@ -61,7 +61,7 @@ export default function TaskBoard({ user }) {
         setTasks(updatedTasks);
 
         // Update backend
-        axios.put(`http://localhost:8000/tasks/${draggedTask.id}`, draggedTask)
+        axios.put(`https://trello-a-todo-list-backend.onrender.com/tasks/${draggedTask.id}`, draggedTask)
             .catch(err => console.error("Failed to update task status", err));
     };
 
@@ -81,7 +81,7 @@ export default function TaskBoard({ user }) {
             userId: user.uid,
         };
 
-        axios.post("http://localhost:8000/tasks", newTask)
+        axios.post("https://trello-a-todo-list-backend.onrender.com/tasks", newTask)
             .then(() => {
                 setTasks((prev) => [...prev, newTask]);
                 setTitle("");
@@ -92,7 +92,7 @@ export default function TaskBoard({ user }) {
 
 
     const handleDeleteTask = (id) => {
-        axios.delete(`http://localhost:8000/tasks/${id}`)
+        axios.delete(`https://trello-a-todo-list-backend.onrender.com/tasks/${id}`)
             .then(() => setTasks(prev => prev.filter(task => task.id !== id)));
     };
 
@@ -103,7 +103,7 @@ export default function TaskBoard({ user }) {
 
         task.status = newStatus;
 
-        axios.put(`http://localhost:8000/tasks/${task.id}`, task)
+        axios.put(`https://trello-a-todo-list-backend.onrender.com/tasks/${task.id}`, task)
             .then(() => setTasks(updatedTasks));
     };
 
